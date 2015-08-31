@@ -9,7 +9,10 @@
     "method-override": "*",
     "ejs": "*",
     "jade": "*",
-    "express-session": "*"
+    "express-session": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-local": "*"
 
   }
 }

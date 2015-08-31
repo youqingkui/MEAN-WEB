@@ -3,8 +3,9 @@ var config = require('./config'),
   morgan = require('morgan'),
   compress = require('compression'),
   bodyParser = require('body-parser'),
+  methodOverride = require('method-override'),
   session = require('express-session'),
-  methodOverride = require('method-override');
+  passport= require('passport');
 
 module.exports = function() {
   var app = express();
@@ -20,16 +21,20 @@ module.exports = function() {
   }));
   app.use(bodyParser.json());
   app.use(methodOverride());
+
   app.use(session({
     saveUninitialized: true,
     resave: true,
     secret: config.sessionSecret
   }));
-
   app.set('views', './app/views');
-  app.set('view engine', 'jade');
+  app.set('view engine', 'ejs');
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   require('../app/routes/index.server.routes.js')(app);
+  require('../app/routes/users.server.routes.js')(app);
 
   app.use(express.static('./public'));
 
