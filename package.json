@@ -12,7 +12,8 @@
     "express-session": "*",
     "mongoose": "*",
     "passport": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "connect-flash": "*"
 
   }
 }
